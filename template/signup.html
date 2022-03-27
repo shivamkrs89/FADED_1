@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+                   {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      var messages = {{ messages | safe }};
+      for (var i=0; i<messages.length; i++) {
+        alert(messages[i]);
+      }
+      </script>
+     {% endif %}
+{% endwith %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/signupstyle.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+
+<body>
+    <div class="signup-page">
+        <form class="signup" method="post" autocomplete="off" enctype="multipart/form-data">
+            <h1>Create account</h1>
+            <h2>Want to Register Your profile with Us ? <a href="{{url_for('signup')}}"><span>Register Now</span></a></h2>
+            <div class="signup__field">
+                <input class="signup__input" type="text" name="fname" id="fname" required />
+                <label class="signup__label" for="fname">Name</label>
+            </div>
+            <div class="signup__field">
+                <input class="signup__input" type="email" name="email" id="email" required />
+                <label class="signup__label" for="email">Email</label>
+            </div>
+
+            <div class="signup__field">
+                <input class="signup__input" type="password" name="pass" id="password" required />
+                <label class="signup__label" for="password">Password</label>
+            </div>
+            <div class="signup__field">
+                <input class="signup__input" type="password" name="passcheck" id="confirm passsword" required />
+                <label class="signup__label" for="confirm passsword">Confirm Password</label>
+            </div>
+
+
+
+            <input class="submit_button" type="submit" name="signup" id="btn-login" value="Sign up">
+        </form>
+    </div>
+</body>
+
+</html>
