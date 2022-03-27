@@ -11,7 +11,7 @@ def codeForces(user_name:str):
     response = requests.get(codeForces_url, headers=header)
     content = response.content
     soup = BeautifulSoup(content, "html.parser")
-    print(soup.prettify())
+    # print(soup.prettify())
     rating = findRating(soup)
     print(rating)
     solved_problems = findFullySolvedProblems(soup)
@@ -29,9 +29,8 @@ def codeForces(user_name:str):
 
 
 def findRating(soup):
-    tag = "span"
-    query = {"class": "user-gray","style": "font-weight:bold;"}
-    return soup.find(tag, query).text.strip().split(" ")[0]
+    tag = "ul"
+    return soup.find_all(tag)[3].find("li").find("span").text
 
 
 def findFullySolvedProblems(soup):
@@ -41,9 +40,8 @@ def findFullySolvedProblems(soup):
 
 
 def findMaxRating(soup):
-    tag = "span"
-    query = {"class": "user-cyan", "style": "font-weight:bold;"}
-    return soup.find_all(tag,query)[1].text
+    tag = "ul"
+    return soup.find_all(tag)[3].find("li").find_all("span")[-1].text
 
 
 def findTotalContests(soup):
@@ -52,4 +50,7 @@ def findTotalContests(soup):
     return len(soup.find(tag, query).find("table", {"class" : "tablesorter user-contests-table"}).find("tbody").find_all("tr"))
 
 
-codeForces("shivamkrs89")
+# codeForces("shivamkrs89")
+# codeForces("bhaskartripathi2512")
+# codeForces("adarsh__786")
+# codeForces("tourist")

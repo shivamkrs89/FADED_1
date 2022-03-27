@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Leaderboard</title>
 </head>
 <body>
-$END$
+<table class="table table-striped">
+                      <thead>
+                        <tr>
+                            <th> User_handle</th>
+                          <th> ratings </th>
+                          <th> Partially Solved</th>
+                            <th> Fully solved</th>
+                            <th> Number of Contests</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%for i in range(0, len)%}
+                        <tr>
+                            <td> {{list[i][0]}}</td>
+                            <td> {{list[i][1]}} </td>
+                            <td> {{list[i][2]}} </td>
+                            <td> {{list[i][3]}} </td>
+                            <td> {{list[i][4]}} </td>
+                        </tr>
+                      {%endfor%}
+
+                      </tbody>
+                    </table>
+
+
+<table class="table table-striped">
+                      <thead>
+                        <tr>
+                            <th> User_id</th>
+                          <th> score </th>
+
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for key,values in dict1.items() %}
+                        <tr>
+                            <td> {{key}}</td>
+                            <td> {{values}} </td>
+
+                        </tr>
+                      {%endfor%}
+
+                      </tbody>
+                    </table>
 </body>
 </html>

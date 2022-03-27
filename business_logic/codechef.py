@@ -2,8 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-header = {
-    'User-Agent': 'Monzilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+header = {'User-Agent': 'Monzilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
 
 def codeChef(user_name:str):
@@ -11,7 +10,7 @@ def codeChef(user_name:str):
     response = requests.get(codeChef_url, headers=header)
     content = response.content
     soup = BeautifulSoup(content, "html.parser")
-    print(soup.prettify())
+    #print(soup.prettify())
     rating = findRating(soup)
     solved_problems = findFullySolvedProblems(soup)
     partially_problems = findPartiallySolvedProblems(soup)
@@ -44,4 +43,4 @@ def findTotalContests(soup):
     return len(soup.find(tag, query).find("div", {"class": "content"}).find("article").find_all("p"))
 
 
-codeChef("shivamkrs89")
+# codeChef("shivamkrs89")
