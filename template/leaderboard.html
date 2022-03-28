@@ -19,11 +19,11 @@
                       <tbody>
                       {%for i in range(0, len)%}
                         <tr>
-                            <td> {{list[i][0]}}</td>
-                            <td> {{list[i][1]}} </td>
-                            <td> {{list[i][2]}} </td>
-                            <td> {{list[i][3]}} </td>
-                            <td> {{list[i][4]}} </td>
+                            <td><a href=""> {{list[i][0]}} </a></td>
+                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][1]}} </a></td>
+                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][2]}} </a></td>
+                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][3]}} </a></td>
+                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][4]}} </a></td>
                         </tr>
                       {%endfor%}
 
@@ -43,7 +43,7 @@
                       <tbody>
                       {% for key,values in dict1.items() %}
                         <tr>
-                            <td> {{key}}</td>
+                            <td> {{dict2.get(key)}}</td>
                             <td> {{values}} </td>
 
                         </tr>

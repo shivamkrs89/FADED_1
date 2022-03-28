@@ -59,11 +59,44 @@ def getLeaderboard1():
 
     return fetched_list
 
+
+def getData1(userid):
+    mydb = connect.connect()
+    mycursor = mydb.cursor()
+
+    statement = "SELECT * from codforces_data where uid=%s"
+    mycursor.execute(statement,(userid,))
+    fetched_list = mycursor.fetchall()
+    print(fetched_list)
+
+    return fetched_list
+
+def getData(userid):
+    mydb = connect.connect()
+    mycursor = mydb.cursor()
+
+    statement= "SELECT * from codechef_data where uid=%s"
+    print(userid)
+    mycursor.execute(statement,(userid,))
+    fetched_list = mycursor.fetchall()
+    print(fetched_list)
+
+    return fetched_list
+
 def getVotes(userId):
     mydb = connect.connect()
     mycursor = mydb.cursor()
     statement = "SELECT no_upvotes,no_downvotes from users where id=%s"
     mycursor.execute(statement, (userId))
+    fetched_list = mycursor.fetchall()
+
+    return fetched_list
+
+def getName():
+    mydb = connect.connect()
+    mycursor = mydb.cursor()
+    statement = "SELECT * from users"
+    mycursor.execute(statement)
     fetched_list = mycursor.fetchall()
 
     return fetched_list
