@@ -96,6 +96,13 @@ def login():
 
         return render_template('login.html')
 
+@app.route('/signout', methods=["POST", "GET"])
+def logout():
+    if session.get('user_logged_in'):
+        session.clear()
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/leaderboard', methods=["POST", "GET"])
 def leaderboard():
