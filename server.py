@@ -133,6 +133,19 @@ def getProfile():
         return render_template('profile.html', list=list1,list2=list2, len=len(list1),len2=len(list2))
 
     return redirect(url_for('login'))
+@app.route('/profiles/<friends_id>', methods=["POST", "GET"])
+def viewProfile(friends_id):
+    if session.get('user_logged_in'):
+        print("here")
+        list1 = dboperations.getData(friends_id)
+        list2 = dboperations.getData1(friends_id)
+
+
+
+        return render_template('profile.html', list=list1,list2=list2, len=len(list1),len2=len(list2))
+
+    return redirect(url_for('login'))
+
 
 
 

@@ -5,36 +5,11 @@
     <title>Leaderboard</title>
 </head>
 <body>
-<table class="table table-striped">
-                      <thead>
-                        <tr>
-                            <th> User_handle</th>
-                          <th> ratings </th>
-                          <th> Partially Solved</th>
-                            <th> Fully solved</th>
-                            <th> Number of Contests</th>
-
-                        </tr>
-                      </thead>
-                      <tbody>
-                      {%for i in range(0, len)%}
-                        <tr>
-                            <td><a href=""> {{list[i][0]}} </a></td>
-                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][1]}} </a></td>
-                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][2]}} </a></td>
-                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][3]}} </a></td>
-                            <td> <a href="{{url_for('seller_dashboard')}}">{{list[i][4]}} </a></td>
-                        </tr>
-                      {%endfor%}
-
-                      </tbody>
-                    </table>
-
 
 <table class="table table-striped">
                       <thead>
                         <tr>
-                            <th> User_id</th>
+                            <th> User_Name</th>
                           <th> score </th>
 
 
@@ -43,8 +18,8 @@
                       <tbody>
                       {% for key,values in dict1.items() %}
                         <tr>
-                            <td> {{dict2.get(key)}}</td>
-                            <td> {{values}} </td>
+                            <td> <a href="{{url_for('viewProfile', friends_id=key)}}"> {{dict2.get(key)}} </a></td>
+                            <td>{{values}}</td>
 
                         </tr>
                       {%endfor%}
