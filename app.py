@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__, template_folder='template/')
 app.secret_key = 'the random string'
 
+
 # def sortByScore():
 #     details = pd.DataFrame(students, columns=['Name', 'Age',
 #                                               'Place', 'College'],
@@ -93,7 +94,6 @@ def login():
                 print(session['user_id'])
                 return redirect(url_for('dashboard'))
 
-
         return render_template('login.html')
 
 
@@ -116,23 +116,25 @@ def leaderboard():
                                   reverse=True))
         print(sorted_dict)
 
-        return render_template('leaderboard.html', list=list1,list2=list2,dict1=sorted_dict,dict2=idname_dict, len=len(list1),len2=len(list2),len3=len(sorted_dict))
+        return render_template('leaderboard.html', list=list1, list2=list2, dict1=sorted_dict, dict2=idname_dict,
+                               len=len(list1), len2=len(list2), len3=len(sorted_dict))
 
     return redirect(url_for('login'))
+
 
 @app.route('/profile', methods=["POST", "GET"])
 def getProfile():
     if session.get('user_logged_in'):
         print("here")
-        user_id=session['user_id']
+        user_id = session['user_id']
         list1 = dboperations.getData(user_id)
         list2 = dboperations.getData1(user_id)
 
-
-
-        return render_template('profile.html', list=list1,list2=list2, len=len(list1),len2=len(list2))
+        return render_template('profile.html', list=list1, list2=list2, len=len(list1), len2=len(list2))
 
     return redirect(url_for('login'))
+
+
 @app.route('/profiles/<friends_id>', methods=["POST", "GET"])
 def viewProfile(friends_id):
     if session.get('user_logged_in'):
@@ -140,21 +142,17 @@ def viewProfile(friends_id):
         list1 = dboperations.getData(friends_id)
         list2 = dboperations.getData1(friends_id)
 
-
-
-        return render_template('profile.html', list=list1,list2=list2, len=len(list1),len2=len(list2))
+        return render_template('profile.html', list=list1, list2=list2, len=len(list1), len2=len(list2))
 
     return redirect(url_for('login'))
 
 
-
-
-def getDict(list,list2):
-    dict={}
+def getDict(list, list2):
+    dict = {}
 
     for x in list:
         score = 0
-        score += (x[1]* (1.5) +x[2]*30 + x[3]*70)
+        score += (x[1] * (1.5) + x[2] * 30 + x[3] * 70)
         key = x[5]
 
         if key not in dict:
@@ -164,28 +162,27 @@ def getDict(list,list2):
 
     for x in list2:
         score = 0
-        score+=(x[1]*(1.5)+x[3]*70)
+        score += (x[1] * (1.5) + x[3] * 70)
         key = x[5]
 
         if key not in dict:
             dict[key] = score
         else:
-            dict[key]=dict[key]+score
+            dict[key] = dict[key] + score
     return dict
 
 
 def getMapped(list):
-    dict1={}
+    dict1 = {}
     for x in list:
         key = x[0]
         val = x[3]
 
         if key not in dict1:
-            dict1[key]=val
+            dict1[key] = val
         else:
-            dict1[key]=val
+            dict1[key] = val
     return dict1
-
 
 
 if __name__ == "__main__":
